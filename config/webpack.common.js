@@ -80,7 +80,12 @@ module.exports = {
         test: /\.svg$/,
         use: ['@svgr/webpack'],
       },
-
+	    {
+		    test: /\.m?js/,
+		    resolve: {
+			    fullySpecified: false,
+		    },
+	    },
       // Images: Copy image files to build folder
       { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource' },
 
@@ -88,4 +93,21 @@ module.exports = {
       { test: /\.(woff(2)?|eot|ttf|otf|)$/, type: 'asset/inline' },
     ],
   },
+	resolve: {
+		fallback: {
+			"fs": require.resolve('fs'),
+			"util": require.resolve('util'),
+			"safe-buffer": require.resolve('buffer'),
+			"canvas": require.resolve('canvas'),
+			"tls": false,
+			"net": false,
+			"path": false,
+			"zlib": false,
+			"http": false,
+			"https": false,
+			"stream": false,
+			"crypto": false,
+			"crypto-browserify": false,
+		}
+	},
 }

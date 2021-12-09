@@ -15,14 +15,20 @@
   "version": "1.0.1",
   "description": "Webpack 6 boilerplate with React 17, Tailwind 2, using babel, sass, with HMR and an optimized production build",
   "dependencies": {
+    "canvas": "^2.8.0",
+    "chart.js": "^3.6.2",
+    "chartjs-node-canvas": "^4.1.5",
+    "faker": "^5.5.3",
     "react": "^17.0.2",
+    "react-chartjs-2": "^4.0.0",
+    "react-data-table-component": "^7.4.5",
     "react-dom": "^17.0.2",
     "tailwindcss": "^2.2.7"
   },
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "webpack serve --config config/webpack.dev.js",
+    "dev": "webpack serve --config config/webpack.dev.js",
     "build": "NODE_ENV=production webpack --config config/webpack.prod.js",
     "build-staging": "NODE_ENV=production webpack --config config/webpack.stag.js",
     "prettify": "yarn prettier \"**/*.*(js|jsx)\" --ignore-path=.prettierignore --write",
