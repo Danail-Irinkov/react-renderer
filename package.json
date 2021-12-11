@@ -1,17 +1,17 @@
 {
   "author": {
-    "name": "Stefan Wüthrich",
-    "url": "https://altafino.com"
+    "name": "Danail Irinkov",
+    "url": "https://github.com/Danail-Irinkov"
   },
   "keywords": [
     "react",
     "reactjs",
     "webpack",
-    "boilerplate",
+    "react-bundle-renderer",
     "tailwind"
   ],
   "license": "MIT",
-  "name": "react-webpack-5-tailwind-2",
+  "name": "react-bundle-renderer",
   "version": "1.0.1",
   "description": "Webpack 6 boilerplate with React 17, Tailwind 2, using babel, sass, with HMR and an optimized production build",
   "dependencies": {
@@ -23,17 +23,18 @@
     "react-chartjs-2": "^4.0.0",
     "react-data-table-component": "^7.4.5",
     "react-dom": "^17.0.2",
+    "request": "^2.79.0",
+    "styled-components": "^5.3.3",
     "tailwindcss": "^2.2.7"
   },
   "main": "index.js",
   "scripts": {
     "test": "jest",
     "dev": "webpack serve --config config/webpack.dev.js",
-    "build": "NODE_ENV=production webpack --config config/webpack.prod.js",
-    "build-staging": "NODE_ENV=production webpack --config config/webpack.stag.js",
+    "build": "webpack --config config/webpack.bundle.js",
     "prettify": "yarn prettier \"**/*.*(js|jsx)\" --ignore-path=.prettierignore --write",
-    "lint": "eslint src --ext .js,.jsx && yarn prettify",
-    "lint-fix": "eslint src --ext .js,.jsx --fix && yarn prettify",
+    "lint": "eslint src --ext .js,.jsx",
+    "lint-fix": "eslint src --ext .js,.jsx --fix",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
@@ -92,14 +93,16 @@
     "postcss": "^8.3.6",
     "postcss-import": "^14.0.2",
     "postcss-loader": "^6.1.1",
-    "prettier": "^2.3.2",
+    "prettier": "^2.5.1",
     "react-refresh": "^0.9.0",
+    "react-server-renderer": "^1.2.0",
     "sass-loader": "^12.1.0",
     "style-loader": "^3.2.1",
     "terser-webpack-plugin": "^5.1.4",
     "webpack": "^5.49.0",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2",
-    "webpack-merge": "^5.8.0"
+    "webpack-merge": "^5.8.0",
+    "webpack-node-externals": "^3.0.0"
   }
 }
