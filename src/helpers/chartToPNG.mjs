@@ -1,4 +1,4 @@
-import * as canvas from 'canvas'
+import canvas from 'canvas'
 import ChartJS from 'chart.js/auto';
 import generateChartData from './generateChartData.js'
 

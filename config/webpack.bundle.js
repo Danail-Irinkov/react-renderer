@@ -46,10 +46,30 @@ module.exports = merge(common, {
 	optimization: {
 		minimize: true,
 		minimizer: [
-      // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
-      `...`,
-      new TerserPlugin(),
-      new CssMinimizerPlugin(),
+			new TerserPlugin({
+				parallel:  2,
+				cache: true,
+				sourceMap: false,
+				extractComments: true,
+				terserOptions: {
+					// https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
+					compress: {
+						ecma: 5,
+						warnings: false,
+						comparisons: false,
+						inline: 2,
+						drop_console: false,
+					},
+					mangle: {
+						safari10: true,
+					},
+					output: {
+						ecma: 5,
+						comments: false,
+						ascii_only: true,
+					},
+				}
+			}),
 		],
 	},
 	performance: {

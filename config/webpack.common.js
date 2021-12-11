@@ -30,17 +30,16 @@ module.exports = {
 		}),
 
 		// Copies files from target to destination folder
-		new CopyWebpackPlugin({
-			patterns: [
-				{
-					from: paths.src + "/assets",
-					to: "assets",
-					globOptions: {
-						ignore: ["*.DS_Store"],
-					},
+		new CopyWebpackPlugin([
+			{
+				from: paths.src + "/assets",
+				to: "assets",
+				globOptions: {
+					ignore: ["*.DS_Store"],
 				},
-			],
-		}),
+			},
+		]
+		),
 
 		// Generates an HTML file from a template
 		// Generates deprecation warning: https://github.com/jantimon/html-webpack-plugin/issues/1501
@@ -100,31 +99,31 @@ module.exports = {
 			{
 				test: /\.m?js/,
 				resolve: {
-					fullySpecified: false,
+					enforceExtension: false,
 				},
 			},
 			// Images: Copy image files to build folder
-			{ test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: "asset/resource" },
+			{ test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: "javascript/auto" },
 
 			// Fonts and SVGs: Inline files
-			{ test: /\.(woff(2)?|eot|ttf|otf|)$/, type: "asset/inline" },
+			{ test: /\.(woff(2)?|eot|ttf|otf|)$/, type: "javascript/auto" },
 		],
 	},
 	resolve: {
-		fallback: {
-			"fs": require.resolve('fs'),
-			"util": require.resolve('util'),
-			"safe-buffer": require.resolve('buffer'),
-			"canvas": require.resolve('canvas'),
-			"tls": false,
-			"net": false,
-			"path": false,
-			"zlib": false,
-			"http": false,
-			"https": false,
-			"stream": false,
-			"crypto": false,
-			"crypto-browserify": false,
-		}
+		// fallback: {
+		// 	"fs": require.resolve('fs'),
+		// 	"util": require.resolve('util'),
+		// 	"safe-buffer": require.resolve('buffer'),
+		// 	"canvas": require.resolve('canvas'),
+		// 	"tls": false,
+		// 	"net": false,
+		// 	"path": false,
+		// 	"zlib": false,
+		// 	"http": false,
+		// 	"https": false,
+		// 	"stream": false,
+		// 	"crypto": false,
+		// 	"crypto-browserify": false,
+		// }
 	},
 };
