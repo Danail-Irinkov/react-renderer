@@ -5,7 +5,7 @@ const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+// const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
 const nodeExternals = require('webpack-node-externals')
@@ -15,6 +15,7 @@ module.exports = merge(common, {
 	mode: "production",
 	target: "node",
 	devtool: false,
+	entry: [paths.src + "/entry-server.js"],
 	output: {
 		path: paths.build,
 		publicPath: "/",

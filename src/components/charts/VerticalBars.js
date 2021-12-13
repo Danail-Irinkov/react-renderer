@@ -7,7 +7,7 @@ export default function (props) {
 	});
 	// console.log('verticalBars RenderedChart', RenderedChart)
 	return (
-		<div className={props.className}>
+		<div className={props.className} style={{maxWidth: '100%'}}>
 			<img src={`${RenderedChart.toString()}`} alt='Data Chart'/>
 		</div>
 	);

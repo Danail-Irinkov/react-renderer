@@ -4,13 +4,38 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // extract css to files
-const tailwindcss = require("tailwindcss");
-const autoprefixer = require("autoprefixer"); // help tailwindcss to work
-
+// const tailwindcss = require("tailwindcss");
+// const autoprefixer = require("autoprefixer"); // help tailwindcss to work
+const options = {
+	// sourceMap: __DEV__,
+	sourceMap: false,
+}
+const cssLoaders = manualInject => [
+	manualInject
+		? {
+			loader: 'react-style-loader',
+			options: {
+				manualInject,
+			},
+		}
+		: MiniCssExtractPlugin.loader,
+	{
+		loader: 'css-loader',
+		options: {
+			...options,
+			esModule: false,
+		},
+	},
+	{
+		loader: 'postcss-loader',
+		options,
+	},
+	{
+		loader: 'sass-loader',
+		options,
+	},
+]
 module.exports = {
-	// Where webpack looks to start building the bundle
-	entry: [paths.src + "/index.js"],
-
 	// Where webpack outputs the assets and bundles
 	output: {
 		path: paths.build,
@@ -55,39 +80,18 @@ module.exports = {
 	module: {
 		rules: [
 			// JavaScript: Use Babel to transpile JavaScript files
-			// { test: /\.(js|jsx)$/, exclude: /node_modules/, use: ['babel-loader'] },
-			{
-				test: /\.(js|jsx)$/,
-				exclude: /node_modules/,
-				use: [
-					// ... other loaders
-					{
-						loader: require.resolve("babel-loader"),
-						options: {
-							// ... other options
-							plugins: [
-								// ... other plugins
-								require.resolve("react-refresh/babel"),
-							].filter(Boolean),
-						},
-					},
-				],
-			},
+			{ test: /\.(js|jsx)$/, exclude: /node_modules/, use: ['babel-loader'] },
+
 			// Styles: Inject CSS into the head with source maps
 			{
 				test: /\.(css|scss|sass)$/,
-				use: [
-					MiniCssExtractPlugin.loader,
-					"css-loader",
-					"sass-loader",
+				oneOf: [
 					{
-						loader: "postcss-loader", // postcss loader needed for tailwindcss
-						options: {
-							postcssOptions: {
-								ident: "postcss",
-								plugins: [tailwindcss, autoprefixer],
-							},
-						},
+						test: /app.scss$/,
+						use: cssLoaders(),
+					},
+					{
+						use: cssLoaders(true),
 					},
 				],
 			},

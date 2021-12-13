@@ -7,7 +7,7 @@ const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin"
 module.exports = merge(common, {
 	// Set the mode to development or production
 	mode: "development",
-
+	entry: [paths.src + "/index.js"],
 	// Control how source maps are generated
 	devtool: "inline-source-map",
 
@@ -22,7 +22,25 @@ module.exports = merge(common, {
 		clientLogLevel: "none",
 	},
 	module: {
-		rules: [],
+		rules: [
+			{
+				test: /\.(js|jsx)$/,
+				exclude: /node_modules/,
+				use: [
+				// ... other loaders
+					{
+						loader: require.resolve("babel-loader"),
+						options: {
+						// ... other options
+							plugins: [
+							// ... other plugins
+								require.resolve("react-refresh/babel"),
+							].filter(Boolean),
+						},
+					},
+				],
+			},
+		],
 	},
 	plugins: [
 		new Dotenv({
