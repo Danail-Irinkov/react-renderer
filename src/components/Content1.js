@@ -3,7 +3,7 @@ import Table from "./Table";
 
 export default function Content1(props) {
 	return (
-		<div className="content flex flex-col text-black font-bold rounded-none border shadow-lg p-8 m-0 w-full h-fit">
+		<div className="content flex flex-col text-black font-bold rounded-none xl:border xl:shadow-lg p-8 m-0 w-full h-fit">
 			<h4>Sample Insurance Data</h4>
 			<p>
         Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -13,14 +13,12 @@ export default function Content1(props) {
         centuries, but also the leap into electronic typesetting, remaining
         essentially unchanged. It was popularised in the 1960s with the release
         of Letraset sheets containing Lorem Ipsum passages, and more recently
-        with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum.
+        with desktop publishing software like versions of Lorem Ipsum.
 			</p>
 			{/* eslint-disable react/prop-types */}
 			<VerticalBars
 				customer={props.customer}
 				className="content flex flex-col mb-12 mt-8 mx-auto"
-				style={"max-width: 800px"}
 			/>
 			<h4>Section 2</h4>
 			<p>
@@ -34,7 +32,7 @@ export default function Content1(props) {
         with desktop publishing software like Aldus PageMaker including versions
         of Lorem Ipsum.
 			</p>
-			<Table className="mt-8" />
+			<Table className="mt-10" />
 			<h4 className="mt-8">Section 3</h4>
 			<p>
         Lorem Ipsum is simply dummy text of the printing and typesetting

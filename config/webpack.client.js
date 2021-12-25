@@ -9,7 +9,8 @@ module.exports = merge(common, {
 		app: [paths.src+'/entry-client.js'],
 	},
 	output: {
-		publicPath: paths.public,
+		// publicPath: paths.public,
+		publicPath: paths.build+'/static',
 		path: paths.build+'/static',
 		filename: `[name].[chunkhash].js`,
 	},

@@ -1,6 +1,6 @@
-import React from 'react'
+// import React from 'react'
 // import { Provider } from 'react-redux'
-import { StaticRouter } from 'react-router'
+import { StaticRouter } from "react-router-dom/server"
 // import { matchRoutes } from 'react-router-config'
 // import Loadable from 'react-loadable'
 
@@ -62,6 +62,5 @@ export default context =>
 			<StaticRouter location={"/"} context={context}>
 				<App {...context}/>
 		  </StaticRouter>
-			 // </Provider>
 		)
 	})

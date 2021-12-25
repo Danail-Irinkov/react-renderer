@@ -3,6 +3,216 @@
 @tailwind utilities;
 
 body {
-	padding: 3rem;
-	max-width: 1200px;
+	padding: 0 2.5rem;
+	max-width: 1269px;
+}
+
+// Tables
+.table-wrapper > div {
+	position: relative;
+	width: 100%;
+	border-radius: inherit;
+	overflow-x: auto;
+	overflow-y: hidden;
+	min-height: 0;
+	& > div {
+		position: relative;
+		width: 100%;
+		display: table;
+	}
+}
+
+.rdt_Table {
+	position: relative;
+	box-sizing: border-box;
+	//display: -webkit-box;
+	//display: -webkit-flex;
+	//display: -ms-flexbox;
+	//display: flex;
+	display: table;
+	//-webkit-flex-direction: column;
+	//-ms-flex-direction: column;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	max-width: 100%;
+	color: rgba(0, 0, 0, 0.87);
+	background-color: #FFFFFF;
+}
+
+.rdt_TableHead {
+	//display: -webkit-box;
+	//display: -webkit-flex;
+	//display: -ms-flexbox;
+	//display: flex;
+	display: table;
+	width: 100%;
+	color: rgba(0, 0, 0, 0.87);
+	font-size: 12px;
+	font-weight: 500;
+}
+
+.rdt_TableHeadRow {
+	//display: -webkit-box;
+	//display: -webkit-flex;
+	//display: -ms-flexbox;
+	//display: flex;
+	display: table-row;
+	table-layout: fixed;
+	//-webkit-align-items: stretch;
+	//-webkit-box-align: stretch;
+	//-ms-flex-align: stretch;
+	//align-items: stretch;
+	width: 100%;
+	background-color: #FFFFFF;
+	height: 40px;
+	border-bottom-width: 1px;
+	border-bottom-color: rgba(0, 0, 0, .12);
+	border-bottom-style: solid;
+}
+
+.rdt_TableRow:nth-child(even) {
+	background-color: #eeeded;
+}
+.rdt_TableCol {
+	position: relative;
+	//display: -webkit-box;
+	//display: -webkit-flex;
+	//display: -ms-flexbox;
+	//display: flex;
+	display: table-cell;
+	//-webkit-align-items: center;
+	//-webkit-box-align: center;
+	//-ms-flex-align: center;
+	text-align: left;
+	align-items: center;
+	box-sizing: border-box;
+	line-height: 20px;
+	//padding-left: 16px;
+	//padding-right: 16px;
+	background-color: #666666;
+	color: white;
+}
+
+.rdt_TableCol_Sortable {
+	//display: -webkit-inline-flex;
+	//display: -ms-inline-flexbox;
+	//display: inline-flex;
+	display: block;
+	//-webkit-align-items: center;
+	//-webkit-box-align: center;
+	//-ms-flex-align: center;
+	text-align: left;
+	padding-left: 5px;
+	align-items: center;
+	//-webkit-box-pack: inherit;
+	//-webkit-justify-content: inherit;
+	//-ms-flex-pack: inherit;
+	justify-content: inherit;
+	height: 100%;
+	width: 100%;
+	outline: none;
+	//-webkit-user-select: none;
+	//-moz-user-select: none;
+	//-ms-user-select: none;
+	user-select: none;
+	overflow: hidden;
+	& > div {
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+}
+
+.rdt_TableBody {
+	//display: -webkit-box;
+	//display: -webkit-flex;
+	//display: -ms-flexbox;
+	//display: flex;
+	display: table;
+	table-layout: fixed;
+	//-webkit-flex-direction: column;
+	//-ms-flex-direction: column;
+	//flex-direction: column;
+	width: 100%;
+	color: rgba(0,0,0,0.87);
+	font-size: 12px;
+	font-weight: 500;
+}
+.rdt_TableRow {
+	//display: -webkit-box;
+	//display: -webkit-flex;
+	//display: -ms-flexbox;
+	//display: flex;
+	display: table-row;
+	//-webkit-align-items: stretch;
+	//-webkit-box-align: stretch;
+	//-ms-flex-align: stretch;
+	align-items: stretch;
+	//-webkit-align-content: stretch;
+	//-ms-flex-line-pack: stretch;
+	align-content: stretch;
+	width: 100%;
+	box-sizing: border-box;
+	font-size: 13px;
+	font-weight: 400;
+	color: rgba(0, 0, 0, 0.87);
+	background-color: #FFFFFF;
+	min-height: 48px;
+}
+
+.rdt_TableRow:not(:last-of-type) {
+	border: 1px solid #0000001E;
+}
+
+.rdt_TableCell {
+	position: relative;
+	display: table-cell;
+	font-weight: 600;
+	text-align: center;
+	align-items: center;
+	box-sizing: border-box;
+	line-height: 22px;
+	word-break: break-word;
+}
+
+.rdt_TableCell, .rdt_TableCol {
+	//-webkit-box-flex: 1;
+	//-webkit-flex-grow: 1;
+	//-ms-flex-positive: 1;
+	flex-grow: 1;
+	//-webkit-flex-shrink: 0;
+	//-ms-flex-negative: 0;
+	flex-shrink: 0;
+	-webkit-flex-basis: 0;
+	//-ms-flex-preferred-size: 0;
+	flex-basis: 0;
+	max-width: 100%;
+	min-width: 100px;
+}
+
+//.rdt_TableCell div:first-child {
+//	white-space: nowrap;
+//	overflow: hidden;
+//	text-overflow: ellipsis;
+//}
+
+
+.rdt_TableRow > [data-column-id="1"] {
+
+}
+.rdt_TableCol[data-column-id="1"], .rdt_TableCell[data-column-id="1"] {
+	width: 40px!important;
+	min-width: 40px!important;
+	border-right: 1px solid #c69214;
+	border-bottom: 1px solid #c69214;
+	padding: 0!important;
+}
+.rdt_TableCol {
+	border-right: 1px solid #c69214;
+	border-bottom: 1px solid #c69214;
+}
+.rdt_TableCell {
+	border-right: 1px solid #f1f1f1;
+	border-bottom: 1px solid #f1f1f1;
 }

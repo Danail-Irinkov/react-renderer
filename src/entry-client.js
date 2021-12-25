@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 import { hydrate } from 'react-dom'
 // import { Provider } from 'react-redux'
 // import Loadable from 'react-loadable'
@@ -7,7 +7,7 @@ import { hydrate } from 'react-dom'
 // import App from 'App'
 import App from "./App";
 
-const store = createStore(window.__INITIAL_STATE__)
+// const store = createStore(window.__INITIAL_STATE__)
 
 // if (!__DEV__) {
 // 	delete window.__INITIAL_STATE__
@@ -23,7 +23,7 @@ const render = () => {
 	)
 
 	// return Loadable.preloadReady().then(() =>
-	hydrate(app, document.querySelector('#root'))
+	hydrate(app, document.getElementById("app"))
 	// )
 }
 

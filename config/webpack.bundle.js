@@ -3,9 +3,6 @@ const webpack = require("webpack");
 const Dotenv = require("dotenv-webpack");
 const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
-
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
 const nodeExternals = require('webpack-node-externals')
@@ -35,14 +32,15 @@ module.exports = merge(common, {
 		}),
 		// Extracts CSS into separate files
 		// Note: style-loader is for development, MiniCssExtractPlugin is for production
-		new MiniCssExtractPlugin({
-			filename: "styles/[name].[contenthash].css",
-			chunkFilename: "[id].css",
-		}),
+		// new MiniCssExtractPlugin({
+		// 	filename: "styles/[name].[contenthash].css",
+		// 	chunkFilename: "[id].css",
+		// }),
 		new ReactSSRServerPlugin(),
 	],
 	module: {
-		rules: [],
+		rules: [
+		],
 	},
 	optimization: {
 		minimize: true,

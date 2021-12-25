@@ -2,7 +2,7 @@ const http = require('http')
 const path = require('path')
 const { createBundleRenderer } = require('react-server-renderer')
 const serverBundle = require('../dist/react-ssr-server-bundle.json')
-const clientManifest = require('../dist/react-ssr-client-manifest.json')
+// const clientManifest = require('../dist/react-ssr-client-manifest.json')
 const template = require('fs').readFileSync('./public/index.html', 'utf-8')
 const HTMLToPDF = require('./HTMLToPDF.js')
 
@@ -31,13 +31,16 @@ http.createServer(async function(req, res) {
 			const renderer = createBundleRenderer(serverBundle,
 				{
 					template,
-					clientManifest,
+					// clientManifest,
 					basedir: path.resolve('dist/static'),
 					runInNewContext: false,
 				})
 
 			// console.log('renderer 2: ', renderer)
-			let html = await renderer.renderToString(props)
+			// console.log('renderer serverBundle: ', serverBundle)
+			// console.log('renderer template: ', template)
+			// console.log('renderer clientManifest: ', clientManifest)
+			let html = await renderer.renderToString({props})
 			// console.log('renderer html: ', html)
 			const pdf_path = path.resolve('./temp/test.pdf')
 			await HTMLToPDF(html, pdf_path)
