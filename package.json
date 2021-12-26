@@ -30,6 +30,8 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@zohocrm/nodejs-sdk-2.0": "^4.0.0",
+    "axios": "^0.24.0",
     "canvas": "^2.8.0",
     "chart.js": "^3.6.2",
     "chartjs-node-canvas": "^4.1.5",
@@ -42,7 +44,8 @@
     "react-router-dom": "^6.2.1",
     "request": "^2.79.0",
     "styled-components": "^5.3.3",
-    "tailwindcss": "^2.2.7"
+    "tailwindcss": "^2.2.7",
+    "zcrmsdk": "^1.1.0"
   },
   "husky": {
     "hooks": {
