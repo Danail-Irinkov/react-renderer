@@ -9,6 +9,8 @@ export default function(props) {
 	//Generate the chartJS input needed based on the customer data
 	const opts = generateChartData(props.customer, {...props.options, width, height})
 
+	console.log('opts', opts)
+
 	const myCanvas = canvas.createCanvas(width, height);
 	const ctx = myCanvas.getContext('2d');
 	const myChart = new ChartJS(ctx, opts);
