@@ -1,41 +1,21 @@
-export default (customer, options) => {
-	console.log("generateChartData customer", customer);
-	console.log("generateChartData options", options);
+export default (customer, options, plugins= []) => {
+	// console.log("generateChartData customer", customer);
+	// console.log("generateChartData options", options);
 	let chart_data = {};
 	//TODO: some business logic to define chart data
-	let from = 35
-	let retirementAge = 60
-	let end = 85
 	chart_data = {
 		type: options.chart_type,
-		data: {
-			labels: generateAgeLabels(from, end),
-			datasets: [
-				{
-					label: "Ending Balance",
-					data: generateEndingBalanceData(from, retirementAge,end),
-					backgroundColor: '#666666',
-					borderColor: '#666666',
-					borderWidth: 0,
-					barPercentage: 1.0,
-				},
-				{
-					label: "Average of Retirement Income Replacement",
-					data: generateARIRData(from, end),
-					backgroundColor: '#c69113',
-					borderColor: '#c69113',
-					borderWidth: 0,
-					barPercentage: 1.0,
-				},
-			],
-		},
+		data: options.data,
+		devicePixelRatio: 2,
 		options: {
+			...options,
 			responsive: false,
 			animation: false,
 			maintainAspectRatio: false,
+			elements: options.elements || {},
 			scales: {
 				x: {
-					beginAtZero: true,
+					beginAtZero: false,
 					ticks: {
 						color: '#a4a4a4',
 						backdropPadding: 0,
@@ -60,7 +40,7 @@ export default (customer, options) => {
 					}
 				},
 				y: {
-					beginAtZero: true,
+					beginAtZero: false,
 					ticks: {
 						color: '#a4a4a4',
 						font: {
@@ -70,7 +50,14 @@ export default (customer, options) => {
 						},
 						// eslint-disable-next-line no-unused-vars
 						callback: function(value, index, values) {
-							return value % 1000 === 0 ? ''+value/1000+'M': null;
+							let val = value
+							if (options.yAxisTicksShowIfDivisableBy)
+								val = value % 1000 === 0 ? String((value/options.yAxisTicksShowIfDivisableBy).toFixed(options.yAxisTicksShowDecimals || 0)): null;
+
+							if (val && options.yAxisTicksShowSymbol)
+								val = val + options.yAxisTicksShowSymbol
+
+							return val
 						}
 					},
 					grid: {
@@ -83,75 +70,55 @@ export default (customer, options) => {
 					}
 				},
 			},
-			...options
+			plugins: {
+				title: {
+					display: !!options.title,
+					align: 'start',
+					text: options.title,
+					font: {
+						family: "'Trebuchet MS', 'Helvetica Neue', 'Helvetica', sans-serif",
+						size: 30,
+						weight: '600'
+					},
+					color: '#2a2928'
+				},
+				legend: {
+					display: !!options.showLegend,
+					align: 'center',
+					labels: {
+						color: '#8f8f8d',
+						padding: 25,
+						boxWidth: 20,
+						textAlign: 'right',
+						usePointStyle: true,
+						pointStyle: 'border-radius: 100%;',
+						font: {
+							family: "'Didot', 'Playfair Display', 'Trebuchet MS', 'Helvetica Neue', 'Helvetica', sans-serif",
+							size: 26,
+							weight: '600'
+						},
+					},
+				},
+				...options.plugins
+			},
 		},
-		plugins: [legendMargin]
+		plugins: [{
+			id: 'legendMarginTop',
+			// eslint-disable-next-line no-unused-vars
+			beforeInit(chart, args, opts) {
+				// console.log('chart.legend.fit', chart.legend)
+				let fitValue = chart.legend.fit
+				chart.legend.fit = function () {
+					fitValue.bind(chart.legend)()
+					if(options.showLegend)
+						this.height += options.legendMarginTop || 15
+					// console.log('inside FIT', this)
+				}
+			}
+		},
+		...plugins
+		]
 	};
 	return chart_data;
 };
 
-const legendMargin = {
-	id: 'legendMargin',
-	// eslint-disable-next-line no-unused-vars
-	beforeInit(chart, args, options) {
-		// console.log('chart.legend.fit', chart.legend)
-		let fitValue = chart.legend.fit
-		chart.legend.fit = function () {
-			fitValue.bind(chart.legend)()
-			this.height += 5
-			// console.log('inside FIT', this)
-		}
-	}
-}
-
-function generateAgeLabels(from, to) {
-	let list = [];
-	for (let i = from; i <= to; i++) {
-		if (i % 10 === 0)
-			list.push(i);
-		else
-			list.push('')
-	}
-
-	return list
-}
-
-function generateEndingBalanceData(from, mid, end, start = 100, max = 4000, finish = 0) {
-	let list = [];
-	let increment = (max-start)/(mid-from)
-	// let decrement = (max-end)
-	let decrement = (max-finish)/(end-mid)
-	// let decrement = (max-end)/(end-61)
-
-	let value = start
-
-	for (let i = from; i <= end; i++) {
-		if(i<=mid)
-			value += Math.pow(increment*(1-(end-i)/(end-from)), 1.28)*((end-i)/(end-mid))*((end-mid)/(mid-from))
-		else
-			value -= Math.pow(decrement*(1-(end-i)/(end-from)), 1.167)*(1-(end-i)/(end-mid))*((end-mid)/(mid-from))
-			// value -= Math.pow(i-mid, 2)*(1-(end-i)/end)*0.805
-			// value -= hyperbola(i, end) * decrement*1.7*(end/i) // Math.pow(decrement, 2)
-
-		list.push(value);
-	}
-	return list
-}
-function generateARIRData(from, to, start = 0, mid = 150, end = 500) {
-	let list = [];
-	let increment = (end-mid)/(to-60)
-
-	let value = start
-
-	for (let i = from; i <= to; i++) {
-		if(i<60)
-			value += 0
-		else if(i===60)
-			value += mid
-		else
-			value += increment
-
-		list.push(value);
-	}
-	return list
-}

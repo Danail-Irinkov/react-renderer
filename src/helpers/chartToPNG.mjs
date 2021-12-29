@@ -7,9 +7,14 @@ export default function(props) {
 	const height = 800;
 
 	//Generate the chartJS input needed based on the customer data
-	const opts = generateChartData(props.customer, {...props.options, width, height})
+	const opts = generateChartData(props.customer, props.options, props.plugins)
 
-	console.log('opts', opts)
+	// console.log('opts', opts)
+
+	// if (props.plugins && props.plugins.length) {
+	// 	for (let plugin of props.plugins)
+	// 		ChartJS.register(plugin);
+	// }
 
 	const myCanvas = canvas.createCanvas(width, height);
 	const ctx = myCanvas.getContext('2d');

@@ -1,5 +1,16 @@
 import DataTable from "react-data-table-component";
 
+export default function Table(props) {
+	if (props?.rows) rows = props.rows;
+	if (props?.columns) columns = props.columns;
+
+	return (
+		<div {...props} className={props.className+" table-wrapper"}>
+			<DataTable columns={columns} data={rows} />
+		</div>
+	);
+}
+
 let columns = [
 	{
 		name: "Age",
@@ -52,17 +63,179 @@ let rows = [
 		gpr: "23%",
 		total: "32M",
 	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
+	{
+		age: 47,
+		title: "Galaxy 2230",
+		year: "1998",
+		gpr: "23%",
+		total: "32M",
+	},
 ];
-
-export default function Table(props) {
-	// eslint-disable-next-line react/prop-types
-	if (props?.rows) rows = props.rows;
-	// eslint-disable-next-line react/prop-types
-	if (props?.columns) rows = props.columns;
-
-	return (
-		<div {...props} className={props.className+" table-wrapper"}>
-			<DataTable columns={columns} data={rows} />
-		</div>
-	);
-}

@@ -11,6 +11,9 @@ module.exports = function (html, path = default_path) {
 				top: '25px',
 				bottom: '25px'
 			},
+			"footer": {
+				"height": "48mm",
+			},
 		}
 		console.log('path', path)
 		return pdf.create(html, options).toFile(path, function(err, res) {
